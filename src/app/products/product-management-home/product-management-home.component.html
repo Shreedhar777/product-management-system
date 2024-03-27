@@ -1,0 +1,44 @@
+<div class="product-management">
+  <div class="header">
+    <h1>Product Management System</h1>
+    <button class="add-product-btn" (click)="addProduct()">Add Product</button>
+  </div>
+
+  <form [formGroup]="searchForm">
+    <div class="filters">
+      <input
+        type="text"
+        placeholder="Search by product name"
+        class="search-input"
+        formControlName="search"
+        (input)="filterProducts()"
+      />
+      <select
+        class="price-filter"
+        formControlName="sort"
+        (change)="filterProducts()"
+      >
+        <option value="">Sort by price</option>
+        <option
+          class="price-option"
+          *ngFor="let option of sortOptions"
+          [value]="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+  </form>
+
+  <div class="product-list" *ngIf="filteredProducts.length">
+    <div *ngFor="let product of filteredProducts" class="product-item">
+      <img [src]="product.image" alt="Product Image" />
+      <h2>{{ product.product_name }}</h2>
+      <p>{{ product.description }}</p>
+      <p class="price">{{ product.price | currency }}</p>
+      <button class="edit-btn" (click)="editProduct(product.product_id)">
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

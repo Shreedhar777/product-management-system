@@ -1,0 +1,30 @@
+<div class="add-edit-product">
+  <h2>{{ mode === "add" ? "Add Product" : "Edit Product" }}</h2>
+  <div class="notification" *ngIf="notificationMessage">
+    {{ notificationMessage }}
+  </div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" formControlName="productName" />
+    </div>
+    <div class="form-group">
+      <label for="productImage">Image URL</label>
+      <input type="text" id="productImage" formControlName="productImage" />
+    </div>
+    <div class="form-group">
+      <label for="productDescription">Description</label>
+      <textarea
+        id="productDescription"
+        formControlName="productDescription"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="productPrice">Price</label>
+      <input type="number" id="productPrice" formControlName="productPrice" />
+    </div>
+    <button class="submit-button" type="submit" [disabled]="!productForm.valid">
+      {{ mode === "add" ? "Add" : "Save" }}
+    </button>
+  </form>
+</div>

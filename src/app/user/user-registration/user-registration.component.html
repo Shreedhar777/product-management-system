@@ -1,0 +1,34 @@
+<div class="registration-container">
+  <div class="registration-form">
+<div class="container">
+  <h2>Registration</h2>
+  <div class="notification" *ngIf="notificationMessage">{{ notificationMessage }}</div>
+  <form *ngIf="registrationForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="text-danger">
+        <div *ngIf="registrationForm.get('email')?.hasError('required')">Email is required.</div>
+        <div *ngIf="registrationForm.get('email')?.hasError('email')">Please enter a valid email address.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username">
+      <div *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched" class="text-danger">
+        <div *ngIf="registrationForm.get('username')?.hasError('required')">Username is required.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="text-danger">
+        <div *ngIf="registrationForm.get('password')?.hasError('required')">Password is required.</div>
+        <div *ngIf="registrationForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+  </form>
+</div>
+</div>
+</div>
