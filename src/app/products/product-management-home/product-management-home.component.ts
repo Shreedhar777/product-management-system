@@ -35,9 +35,11 @@ export class ProductManagementHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.logIn) {
-      this.router.navigate(['./user/login']);
-    }
+    // log-in api was not working so i commetted this 
+
+    // if (!this.logIn) {
+    //   this.router.navigate(['./user/login']);
+    // }
     this.getAllProducts();
   }
 

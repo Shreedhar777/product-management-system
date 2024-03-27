@@ -47,7 +47,7 @@ export class UserLoginComponent implements OnInit {
           this.notificationMessage =
             "Please enter correct credentials. If you don't have an account, please sign up.";
             // on error also I redirecting page to log-in because provided api's are failing randomly
-          this.router.navigate(['./user/log-in']);
+            this.router.navigate(['./products/home']);
         }
       );
     }
