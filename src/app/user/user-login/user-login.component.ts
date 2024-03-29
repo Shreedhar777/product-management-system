@@ -37,19 +37,19 @@ export class UserLoginComponent implements OnInit {
         email: formInput.email,
         password: formInput.password,
       };
-      this.userService.userLogIn(userDetails).subscribe(
-        (response) => {
+      this.userService.userLogIn(userDetails).subscribe({
+        next: (response) => {
           this.userService.setLogInStatus(true);
           this.isSuccess = true;
           this.router.navigate(['./products/home']);
         },
-        (error) => {
+        error: (error) => {
           this.notificationMessage =
             "Please enter correct credentials. If you don't have an account, please sign up.";
-            // on error also I redirecting page to log-in because provided api's are failing randomly
-            this.router.navigate(['./products/home']);
-        }
-      );
+          // on error also I redirecting page to log-in because provided api's are failing randomly
+          this.router.navigate(['./products/home']);
+        },
+      });
     }
   }
 }
